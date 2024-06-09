@@ -1,19 +1,21 @@
 package com.example.newDemo;
 
 public class People {
-    public String Name;
-    public int Age;
-    public int Salary;
+    public String Fname;
+    public String Lname;
+    public String DOB;
+    public String Crime;
+    public String Entry;
 
-    public People(String Name,int Age,int Salary){
-        this.Name=Name;
-        this.Age=Age;
-        this.Salary=Salary;
+    public People(String FName,String Lname,String DOB,String Crime,String Entry){
+        this.Fname=FName;
+        this.Lname=Lname;
+        this.DOB=DOB;
+        this.Crime=Crime;
+        this.Entry=Entry;
     }
 
-    public void inquiry(){
-        System.out.println("Name is "+Name+" Salary is "+Salary+" Age "+Age);
-    }
+
 
     
 }

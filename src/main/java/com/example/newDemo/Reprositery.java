@@ -14,20 +14,22 @@ public class Reprositery {
 
 	public List<People> getList(){
 		try {
-			Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/adarshdb", "root", "root");
-			String query="select * from Person";
+			Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms_lab", "root", "root");
+			String query="select * from criminals";
 			PreparedStatement stmt=connection.prepareStatement(query);
 
 			ResultSet result=stmt.executeQuery();
 			List<People> list=new ArrayList<People>();
 
 			while(result.next()){
-				String name=result.getString("Name");
-				int age=result.getInt("Age");
-				int salary=result.getInt("Salary");
+				String fname=result.getString("fname");
+				String lname=result.getString("lname");
+				String dob=result.getString("DOB");
+				String crime=result.getString("crime");
+				String entry=result.getString("entry");
 
-				People people=new People(name, age, salary);
-				people.inquiry();
+				People people=new People(fname,lname,dob,crime,entry);
+				
 
 				list.add(people);
 
@@ -45,13 +47,15 @@ public class Reprositery {
 
     public People addList(@RequestBody People people){
 		try {
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/adarshdb", "root", "root");
-			String query="insert into person(Name,Age,Salary) values(?,?,?)";
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms_lab", "root", "root");
+			String query="insert into criminals values(null,?,?,?,?,?)";
 			PreparedStatement statement=con.prepareStatement(query);
 
-			statement.setString(1, people.Name);
-			statement.setInt(2, people.Age);
-			statement.setInt(3, people.Salary);
+			statement.setString(1, people.Fname);
+			statement.setString(2, people.Lname);
+			statement.setString(3, people.DOB);
+			statement.setString(4,people.Crime);
+			statement.setString(5, people.Entry);
 
 			statement.executeUpdate();
 			System.out.println(people);
@@ -61,7 +65,7 @@ public class Reprositery {
 
 			
 		} catch (Exception e) {
-			return new People("nhk", 0, 0);
+			return new People("nhk","","","","");
 		}
 	}
 }

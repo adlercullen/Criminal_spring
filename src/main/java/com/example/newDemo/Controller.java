@@ -17,6 +17,7 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
+@CrossOrigin("*")
 public class Controller {
 	public static Reprositery reprositery=new Reprositery();
 
@@ -37,6 +38,10 @@ public class Controller {
 	@GetMapping("/check")
 	public String check(){
 		return "Hello";
+	}
+	@GetMapping("/getDetails")
+	public String show(){
+		return "Hello user you are using springboot";
 	}
 
 	@GetMapping("/get")
